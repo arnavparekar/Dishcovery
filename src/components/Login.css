@@ -285,6 +285,17 @@ input:focus {
   transform: translateX(200%) translateY(-50%);
 }
 
+.error-message {
+  color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.1);
+  border: 1px solid #ff4d4d;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+
 .switch-btn {
   background: transparent;
   border: 2px solid white;
