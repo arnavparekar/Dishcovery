@@ -7,11 +7,11 @@ import MealPlanner from './components/MealPlanner';
 import Pantry from './components/Pantry';
 import Login from './components/Login';
 
-function App() {
-  return (
-    <Router>
-      <Header />
-      <Routes>
+  function App() {
+    return (
+      <Router>
+        <Header />
+        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/recipes" element={<Recipes />} />
         <Route path="/meal-planner" element={<MealPlanner />} />
