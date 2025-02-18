@@ -9,7 +9,7 @@ const dummyRecipes = [
   {
     id: 1,
     title: "Spaghetti Bolognese",
-    image: "/assets/spaghetti.jpg",
+    image: require("../assets/spaghetti.jpg"),
     description: "Classic Italian pasta with rich meat sauce.",
     cuisine: "Italian",
     mealType: "Dinner",
@@ -21,7 +21,7 @@ const dummyRecipes = [
   {
     id: 2,
     title: "Paneer Tikka",
-    image: "/assets/paneer tikka.jpg",
+    image: require("../assets/paneer tikka.jpg"),
     description: "Grilled paneer cubes with spices.",
     cuisine: "Indian",
     mealType: "Lunch",
@@ -33,7 +33,7 @@ const dummyRecipes = [
   {
     id: 3,
     title: "Sushi Rolls",
-    image: "/assets/sushi.jpeg",
+    image: require("../assets/sushi.jpeg"),
     description: "Fresh sushi rolls with rice, seaweed, and fillings.",
     cuisine: "Japanese",
     mealType: "Dinner",
@@ -45,7 +45,7 @@ const dummyRecipes = [
   {
     id: 4,
     title: "Caesar Salad",
-    image: "/assets/caeser-salad.jpg",
+    image: require("../assets/caeser-salad.jpg"),
     description: "Crispy romaine lettuce with creamy dressing and croutons.",
     cuisine: "American",
     mealType: "Lunch",
@@ -57,7 +57,7 @@ const dummyRecipes = [
   {
     id: 5,
     title: "Butter Chicken",
-    image: "/assets/butter-chicken.jpeg",
+    image: require("../assets/butter-chicken.jpeg"),
     description: "Creamy tomato-based chicken curry.",
     cuisine: "Indian",
     mealType: "Dinner",
@@ -69,7 +69,7 @@ const dummyRecipes = [
   {
     id: 6,
     title: "Avocado Toast",
-    image: "/assets/avocado-toast.jpeg",
+    image: require("../assets/avocado-toast.jpeg"),
     description: "Simple avocado toast with toppings.",
     cuisine: "American",
     mealType: "Breakfast",
@@ -81,7 +81,7 @@ const dummyRecipes = [
   {
     id: 7,
     title: "Tacos al Pastor",
-    image: "/assets/tacos.jpg",
+    image: require("../assets/tacos.jpg"),
     description: "Mexican-style pork tacos with pineapple.",
     cuisine: "Mexican",
     mealType: "Lunch",
@@ -93,7 +93,7 @@ const dummyRecipes = [
   {
     id: 8,
     title: "Margherita Pizza",
-    image: "/assets/margherita-pizza.jpg",
+    image: require("../assets/margherita-pizza.jpg"),
     description: "Classic pizza with tomato, mozzarella, and basil.",
     cuisine: "Italian",
     mealType: "Dinner",
@@ -105,7 +105,7 @@ const dummyRecipes = [
   {
     id: 9,
     title: "Ramen Noodles",
-    image: "/assets/ramen.jpg",
+    image: require("../assets/ramen.jpg"),
     description: "Hot noodle soup with broth and toppings.",
     cuisine: "Japanese",
     mealType: "Dinner",
@@ -117,7 +117,7 @@ const dummyRecipes = [
   {
     id: 10,
     title: "Falafel Wrap",
-    image: "/assets/falafel-wrap.jpg",
+    image: require("../assets/falafel-wrap.jpg"),
     description: "Crispy falafels wrapped in pita with tahini sauce.",
     cuisine: "Middle Eastern",
     mealType: "Lunch",
@@ -181,7 +181,6 @@ const clearSearch = () => {
 
   return (
     <div className="recipes-container">
-      {/* <div className="background-overlay"></div> */}
         <header className="header">
           <div className="logo">Dishcovery</div>
           <nav className="nav-links">
@@ -193,17 +192,7 @@ const clearSearch = () => {
           </nav>
         </header>
       <div className="hero-section">
-        <h1>Discover Amazing Recipes</h1>
-        {/* <div className="search-container">
-          <input
-            type="text"
-            placeholder="Search for recipes..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          <span className="search-icon">🔍</span>
-        </div> */}
-        
+        <h1>Discover Amazing Recipes</h1>        
         <div className="search-container">
           <div className="search-bar">
               <Search size={20} className="search-icon" />
@@ -223,10 +212,6 @@ const clearSearch = () => {
             </div>
         </div>
       </div>
-
-      
-
-      {/* Filters */}
       <div className="filters-section">
         <select
           value={filters.cuisine}
@@ -286,8 +271,6 @@ const clearSearch = () => {
           </label>
         </div>
       </div>
-
-      {/* Recipe Grid */}
       <div className="recipes-grid">
         {paginatedRecipes.map((recipe) => (
           <div
@@ -344,9 +327,6 @@ const clearSearch = () => {
           </div>
         ))}
       </div>
-
-      
-      {/* Pagination */}
       {totalPages > 1 && (
         <div className="pagination">
           <button
@@ -366,8 +346,6 @@ const clearSearch = () => {
       )}
 
 <CommunityJoinSection />
-
-      {/* Recipe Detail Modal */}
       {selectedRecipe && (
         <div className="modal-overlay" onClick={() => setSelectedRecipe(null)}>
           <div className="modal-content" onClick={e => e.stopPropagation()}>
@@ -400,7 +378,6 @@ const clearSearch = () => {
           </div>
         </div>
       )}
-      {/* </div> */}
     </div>
   );
 };

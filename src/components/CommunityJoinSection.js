@@ -33,7 +33,8 @@ const CommunityJoinSection = () => {
       <div className="community-container">
         <div className="community-image-section">
           <img 
-            src="../assets/comm.jpg" 
+            // src="../assets/comm.jpg"
+            src={require('../assets/comm.jpg')}
             alt="Cooking Community" 
             className="community-image"
           />
