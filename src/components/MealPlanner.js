@@ -429,7 +429,7 @@ const MealPlanner = () => {
                                                             backgroundColor: '#dbeafe',
                                                             borderColor: '#60a5fa',
                                                             color: '#1e3a8a',
-                                                            boxShadow: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+                                                            boxShadow:  'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
                                                         } : {
                                                             ':hover': {
                                                                 borderColor: '#60a5fa',
