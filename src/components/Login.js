@@ -232,9 +232,9 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-              <a href="#" className="forgot-password">
+              {/* <a href="#" className="forgot-password">
                 Forgot Your Password?
-              </a>
+              </a> */}
               {error && isSignIn && <p className="error-message">{error}</p>}
               <button type="submit" className="submit-btn">
                 SIGN IN

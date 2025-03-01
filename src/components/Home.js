@@ -89,8 +89,6 @@ function Home() {
 
   return (
     <div className="home-container">
-      <div className="hero-section">
-        <div className="background-overlay"></div>
         <header className="header">
           <div className="logo">Dishcovery</div>
           <nav className="nav-links">
@@ -101,6 +99,8 @@ function Home() {
             <Link to="/login" className="login-button">Login</Link>
           </nav>
         </header>
+      <div className="hero-section">
+        <div className="background-overlay"></div>
         <main className="main-content">
           <h2 className="welcome-text">WELCOME</h2>
           <h1 className="hero-title">

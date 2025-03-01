@@ -188,7 +188,7 @@ const clearSearch = () => {
             <Link to="/recipes">Recipes</Link>
             <Link to="/mealplanner">Meal Planner</Link>
             <Link to="/pantry">Pantry</Link>
-            <Link to="/login" className="login-button">Login</Link>
+            <Link to="/login" className="login-button">Logout</Link>
           </nav>
         </header>
       <div className="hero-section">
