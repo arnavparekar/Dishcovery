@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './Home.css';
 import { Link } from 'react-router-dom';
-import { Search, X } from 'lucide-react';
-import { BsCircleFill } from 'react-icons/bs';
-import { GiWheat } from 'react-icons/gi';
+import { generateRecipe } from '../geminiApi'; 
+import { Search, X, CircleDot } from 'lucide-react';
+// import { BsCircleFill } from 'react-icons/bs';
+// import { GiWheat } from 'react-icons/gi';
 
 function Home() {
   const [showRecipeGenerator, setShowRecipeGenerator] = useState(false);
@@ -11,6 +12,9 @@ function Home() {
   const [selectedIngredients, setSelectedIngredients] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
   const [showRecipe, setShowRecipe] = useState(false);
+  const [recipeText, setRecipeText] = useState('');
+  const [loadingRecipe, setLoadingRecipe] = useState(false);
+
 
   const ingredientTypes = {
     Essentials: ['Butter', 'Eggs', 'Wheat Flour', 'Rice', 'Oil', 'Sugar'],
@@ -49,11 +53,6 @@ function Home() {
     setSelectedIngredients({});
   };
 
-  const generateRecipe = () => {
-    // Placeholder recipe generation - to be replaced with Gemini API
-    console.log("Generating recipe with:", selectedIngredients);
-  };
-
   const filterIngredients = () => {
     if (!searchQuery) return ingredientTypes[selectedType];
 
@@ -77,11 +76,21 @@ function Home() {
     return foundIngredient ? [foundIngredient] : [];
   };
 
-  const handleGenerateRecipe = () => {
+  const handleGenerateRecipe = async () => {
+    if (Object.keys(selectedIngredients).length === 0) return;
+    
+    setLoadingRecipe(true);
+    setRecipeText(''); // Clear previous recipe
+  
+    const recipe = await generateRecipe(selectedIngredients);
+    
+    setRecipeText(recipe);
     setShowRecipe(true);
-    // Scroll to recipe section
+    setLoadingRecipe(false);
+  
     document.querySelector('.recipe-diary')?.scrollIntoView({ behavior: 'smooth' });
   };
+  
 
   const clearSearch = () => {
     setSearchQuery('');
@@ -173,9 +182,9 @@ function Home() {
                     {/* <span className={`dot ${nonVegItems.includes(ingredient) ? 'non-veg' : 'veg'}`}></span>
                     {ingredient} */}
                     {nonVegItems.includes(ingredient) ? (
-                      <BsCircleFill className="indicator non-veg" />
+                      <CircleDot className="indicator non-veg" />
                     ) : (
-                      <BsCircleFill className="indicator veg" />
+                      <CircleDot className="indicator veg" />
                     )}
                     {ingredient}
                   </div>
@@ -198,9 +207,9 @@ function Home() {
                       <div key={ingredient} className="selected-ingredient">
                         <span>
                         <pre>{nonVegItems.includes(ingredient) ? (
-                          <BsCircleFill className="indicator non-veg" />
+                          <CircleDot className="indicator non-veg" />
                         ) : (
-                          <BsCircleFill className="indicator veg" />
+                          <CircleDot className="indicator veg" />
                         )}  {ingredient}</pre></span>
                         <div className="quantity-controls">
                           <button onClick={() => updateQuantity(ingredient, -1)}>-</button>
@@ -220,36 +229,32 @@ function Home() {
                   Generate Recipe
                 </button>
               )}
-              {showRecipe && (
-                <div className="recipe-diary">
-                  <div className="diary-binding">
-                    {/* {[...Array(20)].map((_, i) => (
-                      <div key={i} className="binding-ring"></div>
-                    ))} */}
-                  </div>
-                  <div className="diary-content">
-                    <div className="diary-page ingredients-page"> 
-                      <h3>Ingredients</h3>
-                      <ul>
-                        {Object.entries(selectedIngredients).map(([ingredient, quantity]) => (
-                          <li key={ingredient}>{quantity} x {ingredient}</li>
-                        ))}
-                      </ul>
-                      <div className="recipe-details">
-                        <p>Cooking Time: 30 mins</p>
-                        <p>Serves: 4 people</p>
-                      </div>
-                    </div>
-                    <div className="diary-page instructions-page">
-                      <h3>Instructions</h3>
-                      <ol>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                        <li>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
-                        <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco.</li>
-                        <li>Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                      </ol>
+               {/* {showRecipe && (
+                  <div className="recipe-diary">
+                    <div className="diary-content">
+                      {loadingRecipe ? (
+                        <p>Loading recipe...</p>
+                      ) : (
+                        <div className="diary-page">
+                          <h3>Generated Recipe</h3>
+                          <p>{recipeText || "No recipe generated yet."}</p>
+                        </div>
+                      )}
                     </div>
                   </div>
+                )} */}
+                {showRecipe && (
+                <div className="recipe-diary bg-white p-6 rounded-lg shadow-lg text-gray-800 mt-4">
+                    <div className="diary-content">
+                        {loadingRecipe ? (
+                            <p>Loading recipe...</p>
+                        ) : (
+                            <div className="diary-page">
+                                <h3 className="text-xl font-bold mb-2">Generated Recipe</h3>
+                                <div dangerouslySetInnerHTML={{ __html: recipeText }} />
+                            </div>
+                        )}
+                    </div>
                 </div>
               )}
             </div>
