@@ -475,7 +475,7 @@ const CreateRecipe = () => {
     
     try {
       // Your Flask backend URL
-      const response = await fetch('http://localhost:5000/generate-recipe', {
+      const response = await fetch('http://localhost:5001/generate-recipe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
