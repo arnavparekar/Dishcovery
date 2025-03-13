@@ -98,16 +98,16 @@
 
 //   return (
 //     <div className="home-container">
-        // <header className="header">
-        //   <div className="logo">Dishcovery</div>
-        //   <nav className="nav-links">
-        //     <Link to="/">Home</Link>
-        //     <Link to="/recipes">Recipes</Link>
-        //     <Link to="/mealplanner">Meal Planner</Link>
-        //     <Link to="/pantry">Pantry</Link>
-        //     <Link to="/login" className="login-button">Login</Link>
-        //   </nav>
-        // </header>
+//         <header className="header">
+//           <div className="logo">Dishcovery</div>
+//           <nav className="nav-links">
+//             <Link to="/">Home</Link>
+//             <Link to="/recipes">Recipes</Link>
+//             <Link to="/mealplanner">Meal Planner</Link>
+//             <Link to="/pantry">Pantry</Link>
+//             <Link to="/login" className="login-button">Login</Link>
+//           </nav>
+//         </header>
 //       <div className="hero-section">
 //         <div className="background-overlay"></div>
 //         <main className="main-content">
