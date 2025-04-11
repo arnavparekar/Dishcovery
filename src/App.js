@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './components/Home';
@@ -6,17 +6,28 @@ import Recipes from './components/Recipes';
 import MealPlanner from './components/MealPlanner';
 import Pantry from './components/Pantry';
 import Login from './components/Login';
+import CreateRecipe from './components/CreateRecipe';
+
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const userLoggedIn = localStorage.getItem('loggedIn');
+    if (userLoggedIn) {
+      setIsLoggedIn(true);
+    }
+  }, []);
   return (
     <Router>
-      <Header />
+      <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/create-recipe" element={<CreateRecipe />} />
         <Route path="/recipes" element={<Recipes />} />
         <Route path="/meal-planner" element={<MealPlanner />} />
         <Route path="/pantry" element={<Pantry />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn}/>} />
       </Routes>
     </Router>
   );
