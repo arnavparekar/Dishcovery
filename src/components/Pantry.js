@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import { Search, X } from 'lucide-react';
 import "./Pantry.css";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { getFirestore, collection, addDoc, getDocs, query, where, doc, updateDoc, deleteDoc } from "firebase/firestore";
-import bgimage from '../assets/bg2.avif';
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 const Pantry = () => {
@@ -157,8 +156,6 @@ const Pantry = () => {
   const [recipeServings, setRecipeServings] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const [user, setUser] = useState(null);
-  const [showFeedback, setShowFeedback] = useState(false);
-  const [feedbackRecipeId, setFeedbackRecipeId] = useState(null);
   const db = getFirestore();
   
   //new
@@ -202,14 +199,23 @@ const Pantry = () => {
   // };
   
   const addRecipe = (recipe) => {
-    const servings = recipeServings[recipe.id] || 1;
-    setSelectedRecipes([...selectedRecipes, { ...recipe, selectedServings: servings }]);
-    setShowFeedback(true);
-    setFeedbackRecipeId(recipe.id);
-    setTimeout(() => {
-      setShowFeedback(false);
-      setFeedbackRecipeId(null);
-    }, 1500);
+    const servingCount = recipeServings[recipe.id] || 1;
+    setSelectedRecipes((prev) => {
+      const existingRecipeIndex = prev.findIndex((r) => r.id === recipe.id);
+      if (existingRecipeIndex !== -1) {
+        return prev.map((r, index) =>
+          index === existingRecipeIndex
+            ? { ...r, selectedServings: r.selectedServings + servingCount }
+            : r
+        );
+      } else {
+        return [...prev, { ...recipe, selectedServings: servingCount }];
+      }
+    });
+    setRecipeServings((prev) => ({
+      ...prev,
+      [recipe.id]: 1,
+    }));
   };
   
   const removeRecipe = (recipeIndex) => {
@@ -282,21 +288,20 @@ const Pantry = () => {
     setShowTable(false);
   };
   const handleGenerate = async () => {
-    if (selectedRecipes.length === 0) {
-      alert("Please select at least one recipe");
-      return;
-    }
-
+    if (!user) return; // Ensure user is logged in
+  
     setShowTable(true);
-    
-    // Use setTimeout to ensure the DOM has updated
+  
+    // Save to Firestore
+    await savePantryToFirestore();
+  
+    // Smooth scroll after a short delay
     setTimeout(() => {
-      const ingredientsList = document.querySelector('.ingredients-table');
-      if (ingredientsList) {
-        ingredientsList.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'start',
-          inline: 'nearest'
+      const element = document.querySelector('.ingredients-table h3');
+      if (element) {
+        element.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'center'
         });
       }
     }, 100);
@@ -307,81 +312,77 @@ const Pantry = () => {
       <div className="content-wrapper">
         <div className="left-section">
           <div className="search-controls">
-            <input
-              type="text"
+            <input 
+              type="text" 
+              placeholder="Search recipes..." 
               className="search-box"
-              placeholder="Search recipes..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
             <div className="filter-controls">
-              <button
-                className={`all-filter ${dietFilter === "all" ? "active" : ""}`}
-                onClick={() => setDietFilter("all")}
+              <button 
+                className={`all-filter ${dietFilter === 'all' ? 'active' : ''}`}
+                onClick={() => setDietFilter('all')}
               >
                 All
               </button>
-              <button
-                className={`veg-filter ${dietFilter === "veg" ? "active" : ""}`}
-                onClick={() => setDietFilter("veg")}
+              <button 
+                className={`veg-filter ${dietFilter === 'veg' ? 'active' : ''}`}
+                onClick={() => setDietFilter('veg')}
               >
                 Veg
               </button>
-              <button
-                className={`non-veg-filter ${dietFilter === "non-veg" ? "active" : ""}`}
-                onClick={() => setDietFilter("non-veg")}
+              <button 
+                className={`non-veg-filter ${dietFilter === 'non-veg' ? 'active' : ''}`}
+                onClick={() => setDietFilter('non-veg')}
               >
                 Non-Veg
               </button>
             </div>
           </div>
-
           <div className="recipe-container">
             <ul className="recipe-list">
               {filteredRecipes.map((recipe) => (
-                <li key={recipe.id} className="recipe-item">
-                  <span className="recipe-name">{recipe.name}</span>
+                <li key={recipe.id} 
+                    onMouseEnter={() => setHoveredRecipe(recipe)} 
+                    className="recipe-item">
+                  <label className="recipe-name">{recipe.name}</label>
                   <div className="recipe-controls">
-                    <input
-                      type="number"
-                      className="servings-input"
-                      min="1"
-                      value={recipeServings[recipe.id] || 1}
-                      onChange={(e) => handleServingChange(recipe.id, e.target.value)}
-                    />
-                    <button
+                    <div className="servings-wrapper">
+                      <span className="servings-label">Servings:</span>
+                      <input
+                        type="number"
+                        min="1"
+                        className="servings-input"
+                        value={recipeServings[recipe.id] || 1}
+                        onChange={(e) => handleServingChange(recipe.id, e.target.value)}
+                      />
+                    </div>
+                    <button 
                       className="add-btn"
                       onClick={() => addRecipe(recipe)}
                     >
                       Add
                     </button>
-                    {showFeedback && feedbackRecipeId === recipe.id && (
-                      <span className="add-feedback show">✓</span>
-                    )}
                   </div>
                 </li>
               ))}
             </ul>
           </div>
-
-          <div className="action-buttons">
-            <button
-              className="generate-btn"
-              onClick={handleGenerate}
-              disabled={selectedRecipes.length === 0}
-            >
-              Generate List
-            </button>
-          </div>
-
           {selectedRecipes.length > 0 && (
             <div className="selected-items">
               <h3>Selected Recipes</h3>
               {selectedRecipes.map((recipe, index) => (
-                <div key={index} className="selected-item">
-                  <span>{recipe.name} (Servings: {recipe.selectedServings})</span>
+                <div key={`${recipe.id}-${index}`} className="selected-item">
+                  <span>{recipe.name} ({recipe.selectedServings} servings)</span>
                   <div className="selected-item-controls">
-                    <button
+                    <button 
+                      className="add-btn"
+                      onClick={() => addRecipeAgain(recipe)}
+                    >
+                      Add Again
+                    </button>
+                    <button 
                       className="remove-btn"
                       onClick={() => removeRecipe(index)}
                     >
@@ -392,8 +393,14 @@ const Pantry = () => {
               ))}
             </div>
           )}
+          <button
+            className="generate-btn"
+            onClick={handleGenerate}
+            disabled={selectedRecipes.length === 0 || !user}
+          >
+            Generate List
+          </button>
         </div>
-
         <div className="right-section">
           <div className="main">
             <ul className="cards">
@@ -468,18 +475,3 @@ const Pantry = () => {
   );
 };
 export default Pantry;
-
-
-
-// import React from 'react';
-
-// function Home() {
-//   return (
-//     <div className="home">
-//       <h1>Welcome to Pantry page</h1>
-//       <p>Discover amazing recipes and plan your meals!</p>
-//     </div>
-//   );
-// }
-
-// export default Home;

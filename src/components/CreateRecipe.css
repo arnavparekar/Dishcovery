@@ -9,6 +9,7 @@
     padding: 2rem 0;
   }
   
+  
   .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -24,6 +25,7 @@
   
   /* Header styles */
   .headernew {
+    margin-top: 8rem;
     text-align: center;
     margin-bottom: 3rem;
     animation: fadeIn 0.5s ease-in;
@@ -417,7 +419,7 @@
   .back-btn {
     display: inline-flex;
     align-items: center;
-    color: #666;
+    color: black;
     margin-bottom: 1.5rem;
     padding: 0.5rem 1rem;
     border-radius: 8px;
@@ -425,13 +427,14 @@
   }
   
   .back-btn:hover {
-    background-color: #FCEED8;
+    background-color: black;
+    color: white;
   }
 
   
   
-  .recipe-card {
-    background-color: white;
+  .recipe-card1 {
+    background-color: peachpuff;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     padding: 2rem;

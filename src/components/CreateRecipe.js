@@ -360,6 +360,8 @@
 import React, { useState, useEffect } from 'react';
 import { WandSparkles, Loader2 } from 'lucide-react';
 import './CreateRecipe.css';
+import bg_create_recipe from '../assets/bg_create_recipe.png'; 
+
 
 const CreateRecipe = () => {
 
@@ -537,7 +539,13 @@ const CreateRecipe = () => {
   };
 
   return (
-    <div className="recipe-generator">
+    <div className="recipe-generator"
+      style={{
+        backgroundImage: `url(${bg_create_recipe})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}>
       <div className="container">
         
         {/* Header */}
@@ -712,7 +720,7 @@ const CreateRecipe = () => {
               ← Back to Ingredients
             </button>
             
-            <div className="recipe-card">
+            <div className="recipe-card1">
               <h2 className="recipe-title">{generatedRecipe.title}</h2>
               
               <div className="recipe-meta">

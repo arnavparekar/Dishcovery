@@ -77,7 +77,7 @@ const Home = () => {
             <div className="recipe-generator-text">
               <h2>Create New Recipes Using Your Leftovers</h2>
               <p>Don't know what to cook with the ingredients you have? Our recipe generator will help you create delicious meals using what's already in your kitchen.</p>
-              <Link to="/create" className="btn btn-gradient">
+              <Link to="/create-recipe" className="btn btn-gradient">
                 Try Recipe Generator <ArrowRight size={18} className="icon-right" />
               </Link>
             </div>

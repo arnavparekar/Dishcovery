@@ -48,7 +48,7 @@ function Header({ isLoggedIn, setIsLoggedIn }) {
       setHeaderClass("trip-header");
     } else if (location.pathname === "/meal-planner") {
       setHeaderClass("form-header");
-    }else if (location.pathname === "/pantry") {
+    }else if (location.pathname === "/pantry" || location.pathname === "/create-recipe") {
       setHeaderClass("formal-header");
     } else {
       setHeaderClass("default-header");
