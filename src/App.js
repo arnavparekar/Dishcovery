@@ -21,7 +21,7 @@ function App() {
     <Router>
       <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
         <Route path="/create-recipe" element={<CreateRecipe />} />
         <Route path="/recipes" element={<Recipes />} />
         <Route path="/meal-planner" element={<MealPlanner />} />

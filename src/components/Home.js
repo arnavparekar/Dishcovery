@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import { ChefHat, Utensils, Calendar, ShoppingBag, ArrowRight } from 'lucide-react';
 import './Home.css';
 
-const Home = () => {
+const Home = ({ isLoggedIn }) => {
+  const exploreLink = isLoggedIn ? "/recipes" : "/login";
+  const createLink = isLoggedIn ? "/create-recipe" : "/login";
 
   return (
     <div className="hello-container">
@@ -16,10 +18,10 @@ const Home = () => {
             <h1>Discover Delicious Recipes for Every Occasion</h1>
             <p>Find, create, and share amazing recipes with our vibrant food community.</p>
             <div className="hello-buttons">
-              <Link to="/login" className="btn btn-primary">
+              <Link to={exploreLink} className="btn btn-primary">
                 Explore Recipes
               </Link>
-              <Link to="/login" className="btn btn-outline">
+              <Link to={createLink} className="btn btn-outline">
                 Create Recipe
               </Link>
             </div>
@@ -77,7 +79,7 @@ const Home = () => {
             <div className="recipe-generator-text">
               <h2>Create New Recipes Using Your Leftovers</h2>
               <p>Don't know what to cook with the ingredients you have? Our recipe generator will help you create delicious meals using what's already in your kitchen.</p>
-              <Link to="/create-recipe" className="btn btn-gradient">
+              <Link to={createLink} className="btn btn-gradient">
                 Try Recipe Generator <ArrowRight size={18} className="icon-right" />
               </Link>
             </div>
@@ -91,17 +93,16 @@ const Home = () => {
         </div>
       </section>
 
-
       {/* CTA Section */}
       <section className="cta-section">
         <div className="container">
           <h2>Ready to Start Cooking?</h2>
           <p>Join our community of food lovers and discover amazing recipes that will transform your cooking experience.</p>
           <div className="cta-buttons">
-            <Link to="/login" className="btn btn-primary">
+            <Link to={exploreLink} className="btn btn-primary">
               Explore Recipes
             </Link>
-            <Link to="/login" className="btn btn-outline">
+            <Link to={createLink} className="btn btn-outline">
               Create Recipe
             </Link>
           </div>
