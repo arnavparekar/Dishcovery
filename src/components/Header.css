@@ -150,6 +150,7 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+
 .formal-header .button-link {
   color: black;
   text-shadow: none;
@@ -247,6 +248,33 @@
     text-align: center;
   }
 }
+
+.formy-header .logo a{
+  color: black;
+}
+.formy-header {
+  background: transparent;
+  box-shadow: none;
+}
+
+.formy-header .button-link1 {
+  color: black;
+}
+
+.formy-header .button-link {
+  color: black;
+}
+
+.formy-header {
+  background: transparent;
+  box-shadow: none;
+}
+
+
+.formy-header .button-link::after {
+  background-color: black;
+}
+
 
 /* Extra adjustments for very small screens */
 @media (max-width: 480px) {

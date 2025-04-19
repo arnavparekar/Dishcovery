@@ -20,13 +20,16 @@ function Header({ isLoggedIn, setIsLoggedIn }) {
       // Add scrolled class when not at the top
       setScrolled(currentScrollY > 20);
 
+      // Show header only at the top of the page
       if (currentScrollY === 0) {
         setHideHeader(false);
-      } else if (currentScrollY > lastScrollY) {
+      } 
+      // Hide header when scrolling down
+      else if (currentScrollY > lastScrollY) {
         setHideHeader(true);
-      } else {
-        setHideHeader(false);
       }
+      // When scrolling up, keep header hidden until reaching the top
+      // (no need to change hideHeader since we only set it to false at the top)
 
       lastScrollY = currentScrollY;
     };
@@ -48,9 +51,11 @@ function Header({ isLoggedIn, setIsLoggedIn }) {
       setHeaderClass("trip-header");
     } else if (location.pathname === "/meal-planner") {
       setHeaderClass("form-header");
-    }else if (location.pathname === "/pantry" || location.pathname === "/create-recipe") {
-      setHeaderClass("formal-header");
-    } else {
+    }else if (location.pathname === "/pantry") {
+      setHeaderClass("trip-header");
+    } else if (location.pathname === "/create-recipe") {
+      setHeaderClass("formy-header");
+    }  else {
       setHeaderClass("default-header");
     }
   }, [location.pathname]);

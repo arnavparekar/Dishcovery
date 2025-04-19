@@ -152,9 +152,21 @@ const MealPlanner = () => {
 
     const plannerSectionStyle = {
         padding: '96px 0',
-        background: 'linear-gradient(to bottom, #d3bca5,rgb(255, 255, 255))',
+        background: 'linear-gradient(to bottom, #d3bca5, #f9fafb)', // Softer gradient
         minHeight: '50vh',
         maxHeight: '130vh',
+        position: 'relative',
+        '&::before': { // Add subtle pattern overlay
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundImage: 'radial-gradient(#000 1px, transparent 1px)',
+            backgroundSize: '20px 20px',
+            opacity: 0.05
+        }
     };
 
     const plannerContainerStyle = {
@@ -164,11 +176,24 @@ const MealPlanner = () => {
     };
 
     const plannerTitleStyle = {
-        fontSize: '30px',
-        fontWeight: '700',
-        color: '#374151',
+        fontSize: '36px', // Larger from 30px
+        fontWeight: '800', // Bolder from 700
+        color: '#1e293b', // Darker color
         textAlign: 'center',
         marginBottom: '48px',
+        position: 'relative',
+        paddingBottom: '16px',
+        '&::after': { // Add decorative underline
+            content: '""',
+            position: 'absolute',
+            bottom: 0,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '60px',
+            height: '4px',
+            backgroundColor: '#fde047', // Yellow accent
+            borderRadius: '2px'
+        }
     };
 
     const plannerGridStyle = {
@@ -179,14 +204,33 @@ const MealPlanner = () => {
 
     const plannerCardStyle = {
         backgroundColor: '#fff',
-        borderRadius: '12px',
-        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        borderRadius: '16px', // Increase from 12px
+        boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', // Deeper shadow
         overflow: 'hidden',
         maxHeight: '50vh',
+        transition: 'transform 0.3s ease', // Add smooth hover effect
+        '&:hover': {
+            transform: 'translateY(-5px)'
+        }
     };
 
     const cardContentStyle = {
         padding: '24px',
+        position: 'relative'
+    };
+
+    const cardHeaderStyle = {
+        display: 'flex',
+        alignItems: 'center',
+        marginBottom: '20px'
+    };
+    
+    // New style for card icons
+    const cardIconStyle = {
+        width: '24px',
+        height: '24px',
+        marginRight: '12px',
+        color: '#60a5fa' // Blue accent color
     };
 
     const cardTitleStyle = {
@@ -207,27 +251,39 @@ const MealPlanner = () => {
 
     const mealButtonStyle = {
         width: '100%',
-        padding: '12px 16px',
+        padding: '16px', // Increase padding
         textAlign: 'left',
-        borderRadius: '8px',
+        borderRadius: '12px', // Increase from 8px
         border: '1px solid #d1d5db',
-        transition: 'all 0.2s',
+        transition: 'all 0.3s',
         backgroundColor: '#fff',
         color: '#374151',
         cursor: 'pointer',
+        fontSize: '16px',
+        fontWeight: '500',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between' // For adding an icon later
     };
 
     const recipeButtonStyle = {
         width: '100%',
         padding: '12px',
         textAlign: 'center',
-        borderRadius: '8px',
+        borderRadius: '12px', // Increase from 8px
         border: '1px solid #d1d5db',
         transition: 'all 0.2s',
         backgroundColor: '#fff',
         color: '#374151',
         aspectRatio: '1/1',
         cursor: 'pointer',
+        fontSize: '15px',
+        fontWeight: '500',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
     };
 
     const addNewRecipeButtonStyle = {
@@ -247,14 +303,21 @@ const MealPlanner = () => {
     };
 
     const saveButtonStyle = {
-        padding: '12px 32px',
+        padding: '14px 36px', // Larger button
         backgroundColor: '#16a34a',
         color: '#fff',
         fontWeight: '600',
         borderRadius: '9999px',
-        transition: 'background-color 0.2s',
+        transition: 'all 0.3s',
         border: 'none',
         cursor: 'pointer',
+        fontSize: '16px',
+        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        '&:hover': {
+            backgroundColor: '#15803d', // Darker on hover
+            transform: 'translateY(-2px)', // Slight lift effect
+            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'
+        }
     };
 
     const footerStyle = {
@@ -373,15 +436,24 @@ const MealPlanner = () => {
                             {/* Date Selection */}
                             <div style={plannerCardStyle}>
                                 <center>
-                                    <div style={cardContentStyle}>
+                                    {/* <div style={cardContentStyle}>
                                         <h3 style={cardTitleStyle}>Choose the Date</h3>
-                                        <DatePicker
-                                            selected={selectedDate}
-                                            onChange={(date) => setSelectedDate(date)}
-                                            inline
-                                            //  style={inputStyle}  // it doesn't work
-                                            calendarClassName="react-datepicker"  // Add a custom class name
-                                        />
+                                        
+                                    </div> */}
+                                    <div style={cardContentStyle}>
+                                        <div style={cardHeaderStyle}>
+                                            <svg style={cardIconStyle} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                            </svg>
+                                            <h3 style={cardTitleStyle}>Choose the Date</h3>
+                                        </div>
+                                            <DatePicker
+                                                selected={selectedDate}
+                                                onChange={(date) => setSelectedDate(date)}
+                                                inline
+                                                //  style={inputStyle}  // it doesn't work
+                                                calendarClassName="react-datepicker"  // Add a custom class name
+                                            />
                                     </div>
                                 </center>
                             </div>

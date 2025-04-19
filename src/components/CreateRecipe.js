@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { WandSparkles, Loader2 } from 'lucide-react';
 import './CreateRecipe.css';
-import bg_create_recipe from '../assets/bg_create_recipe.png'; 
+import bg_create_recipe from '../assets/b2.jpg'; 
 
 
 const CreateRecipe = () => {
@@ -179,12 +179,12 @@ const CreateRecipe = () => {
 
   return (
     <div className="recipe-generator"
-      style={{
-        backgroundImage: `url(${bg_create_recipe})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }}>
+    style={{
+      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0)), url(${bg_create_recipe})`,
+      backgroundSize: '150%', // Zoomed out effect
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+    }}>
       <div className="container">
         
         {/* Header */}
@@ -356,35 +356,55 @@ const CreateRecipe = () => {
           // Generated Recipe Display
           <div className="generated-recipe">
             <button className="back-btn" onClick={closeRecipe}>
-              ← Back to Ingredients
+              <pre>←   Back to Ingredients</pre>
             </button>
             
             <div className="recipe-card1">
-              <h2 className="recipe-title">{generatedRecipe.title}</h2>
+              {/* Recipe Header with Decorative Element */}
+              <div className="recipe-header">
+                <div className="recipe-decoration"></div>
+                <h2 className="recipe-title">{generatedRecipe.title}</h2>
+              </div>
               
               <div className="recipe-meta">
-                <span>⏱️ Cook Time: {generatedRecipe.cookTime}</span>
-                <span>👥 Serves: {generatedRecipe.serves}</span>
+                <span className="meta-item">⏱️ Cook Time: {generatedRecipe.cookTime}</span>
+                <span className="meta-item">👥 Serves: {generatedRecipe.serves}</span>
               </div>
               
               <div className="recipe-content">
                 <div className="recipe-ingredients">
-                  <h3>Ingredients</h3>
+                  <h3 className="sect-title">
+                    <span className="sect-icon">🥗</span>
+                    Ingredients
+                  </h3>
                   <ul>
                     {generatedRecipe.ingredients.map((ingredient, index) => (
-                      <li key={index}>{ingredient}</li>
+                      <li key={index} className="ingredient-item">
+                        <span className="ingredient-bullet"></span>
+                        {ingredient}
+                      </li>
                     ))}
                   </ul>
                 </div>
                 
                 <div className="recipe-instructions">
-                  <h3>Instructions</h3>
+                  <h3 className="sect-title">
+                    <span className="sect-icon">🍳</span>
+                    Instructions
+                  </h3>
                   <ol>
                     {generatedRecipe.instructions.map((step, index) => (
-                      <li key={index}>{step}</li>
+                      <li key={index} className="instruction-step">
+                        <span className="s-number">{index + 1}</span>
+                        <span className="s-text">{step}</span>
+                      </li>
                     ))}
                   </ol>
                 </div>
+              </div>
+              
+              <div className="recipe-footer">
+                <p>Enjoy your homemade {generatedRecipe.title}!</p>
               </div>
             </div>
           </div>

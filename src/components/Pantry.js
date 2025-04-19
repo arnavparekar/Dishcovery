@@ -403,23 +403,19 @@ const Pantry = () => {
         </div>
         <div className="right-section">
           <div className="main">
-            <ul className="cards">
-              <li className="cards_item">
-                <div className="card">
-                  <div className="card_image">
-                    <img src={hoveredRecipe.image} alt={hoveredRecipe.name} />
-                  </div>
-                  <div className="card_content">
-                    <h2 className="card_title">{hoveredRecipe.name}</h2>
-                    <div className="card_text">
-                        {hoveredRecipe.ingredients.map((ing, index) => (
-                          <li key={index}>{ing.name} - {ing.qty} {ing.unit}</li>
-                        ))}
-                    </div>
+              <div className="card">
+                <div className="card_image">
+                  <img src={hoveredRecipe.image} alt={hoveredRecipe.name} />
+                </div>
+                <div className="card_content">
+                  <h2 className="card_title">{hoveredRecipe.name}</h2>
+                  <div className="card_text">
+                      {hoveredRecipe.ingredients.map((ing, index) => (
+                        <li key={index}>{ing.name} - {ing.qty} {ing.unit}</li>
+                      ))}
                   </div>
                 </div>
-              </li>
-            </ul>
+              </div>
           </div>
         </div>
       </div>
