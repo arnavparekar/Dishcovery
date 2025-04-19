@@ -115,7 +115,6 @@ const CreateRecipe = () => {
     setIsGenerating(true);
     setError(null);
     try {
-      // Your Flask backend URL
       const response = await fetch('http://localhost:5001/generate-recipe', {
         method: 'POST',
         headers: {
@@ -123,10 +122,23 @@ const CreateRecipe = () => {
         },
         body: JSON.stringify({
           ingredients: selectedIngredients,
-          // You can include the API key here or set it as an environment variable in your Flask app
            api_key: 'AIzaSyCfdj6F_f11yQ6tubv-0w9HuVbifLiseDk' 
         }),
       });
+      // const API_BASE_URL = process.env.REACT_APP_API_URL;
+      // const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
+
+      // const response = await fetch(`${API_BASE_URL}/generate-recipe`, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({
+      //     ingredients: selectedIngredients,
+      //     api_key: GEMINI_API_KEY,
+      //   }),
+      // });
+
       
       if (!response.ok) {
         const errorData = await response.json();
