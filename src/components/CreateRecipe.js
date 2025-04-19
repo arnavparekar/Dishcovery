@@ -115,29 +115,18 @@ const CreateRecipe = () => {
     setIsGenerating(true);
     setError(null);
     try {
-      const response = await fetch('http://localhost:5001/generate-recipe', {
+      const API_BASE_URL = process.env.REACT_APP_API_URL;
+      const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
+      const response = await fetch(`${API_BASE_URL}/generate-recipe`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           ingredients: selectedIngredients,
-           api_key: 'AIzaSyCfdj6F_f11yQ6tubv-0w9HuVbifLiseDk' 
+          api_key: GEMINI_API_KEY,
         }),
       });
-      // const API_BASE_URL = process.env.REACT_APP_API_URL;
-      // const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
-
-      // const response = await fetch(`${API_BASE_URL}/generate-recipe`, {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({
-      //     ingredients: selectedIngredients,
-      //     api_key: GEMINI_API_KEY,
-      //   }),
-      // });
 
       
       if (!response.ok) {
