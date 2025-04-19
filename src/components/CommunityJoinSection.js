@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
+import { firestore, auth, storage } from '../firebase';
+import { collection, addDoc, doc, getDoc } from 'firebase/firestore';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 
 const CommunityJoinSection = () => {
   const [showModal, setShowModal] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
     description: '',
     cuisine: '',
     mealType: '',
-    veg: false,
+    veg: true,
     ingredients: '',
     instructions: '',
     image: null
@@ -21,21 +25,100 @@ const CommunityJoinSection = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log(formData);
-    setShowModal(false);
+  const handleImageChange = (e) => {
+    setFormData(prev => ({ ...prev, image: e.target.files[0] }));
   };
+
+  const parseIngredients = (input) => {
+    return input.split("\n").map(line => {
+      const match = line.match(/^(.+?)\s([\d.]+)\s?(.+)?$/);
+      if (match) {
+        return {
+          title: match[1].trim(),
+          quantity: Number(match[2]),
+          unit: match[3] ? match[3].trim() : ""
+        };
+      } else {
+        return { title: line.trim(), quantity: 0, unit: "" };
+      }
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.image) {
+      alert("Please select an image.");
+      return;
+    }
+  
+    setUploading(true);
+  
+    try {
+      const uid = auth.currentUser?.uid;
+      let uploadedBy = "Anonymous";
+  
+      if (uid) {
+        const userDocRef = doc(firestore, "users", uid);
+        const userSnap = await getDoc(userDocRef);
+        if (userSnap.exists()) {
+          uploadedBy = userSnap.data().name || "Anonymous";
+        }
+      }
+  
+      const storageRef = ref(storage, `recipes/${formData.image.name}`);
+      const uploadTask = uploadBytesResumable(storageRef, formData.image);
+  
+      uploadTask.on(
+        "state_changed",
+        null,
+        (error) => {
+          console.error("Error uploading image:", error);
+          setUploading(false);
+        },
+        async () => {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+  
+          await addDoc(collection(firestore, "recipes"), {
+            name: formData.title,
+            description: formData.description,
+            cuisine: formData.cuisine,
+            mealType: formData.mealType,
+            veg: formData.veg,
+            ingredients: parseIngredients(formData.ingredients),
+            instructions: formData.instructions,
+            image: downloadURL,
+            uploadedBy: uploadedBy,
+          });
+  
+          alert("Recipe uploaded successfully!");
+          setFormData({
+            title: '',
+            description: '',
+            cuisine: '',
+            mealType: '',
+            veg: true,
+            ingredients: '',
+            instructions: '',
+            image: null
+          });
+          setShowModal(false);
+          setUploading(false);
+        }
+      );
+    } catch (error) {
+      console.error("Error uploading recipe:", error);
+      setUploading(false);
+    }
+  };
+  
 
   return (
     <div className="community-wrapper">
       <div className="community-container">
         <div className="community-image-section">
-          <img 
-            // src="../assets/comm.jpg"
+          <img
             src={require('../assets/comm.jpg')}
-            alt="Cooking Community" 
+            alt="Cooking Community"
             className="community-image"
           />
         </div>
@@ -105,25 +188,24 @@ const CommunityJoinSection = () => {
                 </div>
               </div>
 
-              <div className="form-group checkbox-group">
-                <label>
-                  <input
-                    type="checkbox"
-                    name="veg"
-                    checked={formData.veg}
-                    onChange={handleInputChange}
-                  />
-                  &nbsp;Vegetarian
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    name="nonveg"
-                    checked={formData.nonveg}
-                    onChange={handleInputChange}
-                  />
-                  &nbsp;Non-Vegetarian
-                </label>
+              <div className="form-group veg-toggle">
+                <label>Type:</label>
+                <div className="veg-buttons">
+                  <button
+                    type="button"
+                    className={`veg ${formData.veg ? "active" : ""}`}
+                    onClick={() => setFormData(prev => ({ ...prev, veg: true }))}
+                  >
+                    Veg
+                  </button>
+                  <button
+                    type="button"
+                    className={`nonveg ${!formData.veg ? "active" : ""}`}
+                    onClick={() => setFormData(prev => ({ ...prev, veg: false }))}
+                  >
+                    Non-Veg
+                  </button>
+                </div>
               </div>
 
               <div className="form-group">
@@ -132,7 +214,7 @@ const CommunityJoinSection = () => {
                   name="ingredients"
                   value={formData.ingredients}
                   onChange={handleInputChange}
-                  placeholder="Enter each ingredient on a new line"
+                  placeholder="Enter each ingredient on a new line (e.g. Chicken Thighs 500 grams)"
                   required
                 />
               </div>
@@ -154,12 +236,14 @@ const CommunityJoinSection = () => {
                   type="file"
                   name="image"
                   accept="image/*"
-                  onChange={(e) => setFormData({ ...formData, image: e.target.files[0] })}
+                  onChange={handleImageChange}
                   required
                 />
               </div>
 
-              <button type="submit" className="submit-button">Share Recipe</button>
+              <button type="submit" className="submit-button" disabled={uploading}>
+                {uploading ? "Uploading..." : "Share Recipe"}
+              </button>
             </form>
           </div>
         </div>
