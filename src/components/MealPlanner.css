@@ -8,7 +8,7 @@
 }
 
 .container {
-  width: 100%;
+  width: 120%;
   min-height: 100vh;
   background-color: #f8f9fa;
   font-family: 'Poppins', sans-serif;
@@ -21,7 +21,7 @@
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  padding: 120px 0;
+  padding: 135px 0;
   min-height: 92vh;
   display: flex;
   align-items: center;
@@ -112,9 +112,9 @@
 /* Planner Section */
 .plannerSection {
   padding: 30px 0;
-  background: linear-gradient(-45deg, #f8f9fa, #e9f5f2, #f5f0e8, #f0f3f9);
+  background: linear-gradient(-45deg, #82a0bf, #83c3b3, #bf9a89, #8292b3);
   background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
+  animation: gradientBG 6s ease infinite;
   min-height: 100vh;
 }
 

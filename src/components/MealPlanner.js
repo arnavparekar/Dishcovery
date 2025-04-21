@@ -29,7 +29,7 @@ const MealPlanner = () => {
   const handleGetStartedClick = () => {
     setShowPlanner(true);
     if (plannerRef.current) {
-      plannerRef.current.style.scrollMarginTop = "35px";
+      plannerRef.current.style.scrollMarginTop = "0px";
       plannerRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
@@ -226,12 +226,6 @@ const MealPlanner = () => {
           </div>
         </div>
       )}
-
-      <footer className="footer">
-        <p>
-          &copy; {new Date().getFullYear()} Meal Planner. All rights reserved.
-        </p>
-      </footer>
     </div>
   );
 };
