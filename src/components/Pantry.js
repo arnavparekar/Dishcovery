@@ -305,7 +305,7 @@ const Pantry = () => {
         });
       }
     }, 100);
-  };
+  };  
   
   return (
     <div className="pantry-container">

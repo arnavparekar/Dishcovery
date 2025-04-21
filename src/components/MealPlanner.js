@@ -11,6 +11,7 @@ const MealPlanner = () => {
   const [selectedMeal, setSelectedMeal] = useState(null);
   const [selectedRecipes, setSelectedRecipes] = useState([]);
   const [recipes, setRecipes] = useState([]);
+  const [pageLoaded, setPageLoaded] = useState(false);
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
@@ -23,7 +24,14 @@ const MealPlanner = () => {
 
     fetchRecipes();
   }, []);
-
+  useEffect(() => {
+    // Small timeout to ensure DOM is ready
+    const timer = setTimeout(() => {
+      setPageLoaded(true);
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
   const plannerRef = useRef(null);
 
   const handleGetStartedClick = () => {
@@ -77,15 +85,15 @@ const MealPlanner = () => {
   };
 
   return (
-    <div className="container">
-      <div className="heroSection">
-        <div className="heroContainer">
-          <div className="heroInner">
-            <div className="heroTextContainer">
-              <h1 className="heroTitle">
+    <div className="meal-container">
+      <div className="meal-heroSection">
+        <div className="meal-heroContainer">
+          <div className="meal-heroInner">
+            <div className="meal-heroTextContainer">
+              <h1 className="meal-heroTitle">
                 Plan Your Meals{" "}
                 <span
-                  className="highlight"
+                  className="meal-highlight"
                   style={{
                     fontFamily: "Lucida Handwriting",
                     fontSize: "2.3rem",
@@ -94,7 +102,7 @@ const MealPlanner = () => {
                   with Ease !
                 </span>
               </h1>
-              <p className="heroSubtitle">
+              <p className="meal-heroSubtitle">
                 Take control of your weekly meals with our intuitive meal
                 planner. Discover a wide range of delicious and healthy recipes
                 tailored to your taste. Effortlessly organize your breakfasts,
@@ -104,10 +112,13 @@ const MealPlanner = () => {
                 ease. Enjoy stress-free cooking and make every meal a delightful
                 experience!
               </p>
-              <button onClick={handleGetStartedClick} className="heroButton">
+              <button
+                onClick={handleGetStartedClick}
+                className="meal-heroButton"
+              >
                 Get Started
                 <svg
-                  className="buttonIcon"
+                  className="meal-buttonIcon"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -181,41 +192,38 @@ const MealPlanner = () => {
               </div>
 
               <div className="rightColumn">
-  <div className="plannerCard">
-    <div className="cardContent">
-      <h3 className="cardTitle">Pick Your Favorite Recipes</h3>
-      <div className="recipeSelection">
-        <div className="recipeGrid">
-          {recipes.map((recipe) => (
-            <div
-              key={recipe.id}
-              className="recipeCard"
-            >
-              <div className="imageContainer">
-                <div 
-                  className="recipeImage"
-                  style={{
-                    backgroundImage: `linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.7)), url(${recipe.image})`
-                  }}
-                />
+                <div className="plannerCard">
+                  <div className="cardContent">
+                    <h3 className="cardTitle">Pick Your Favorite Recipes</h3>
+                    <div className="recipeSelection">
+                      <div className="recipeGrid">
+                        {recipes.map((recipe) => (
+                          <div key={recipe.id} className="recipeCard">
+                            <div className="imageContainer">
+                              <div
+                                className="recipeImage"
+                                style={{
+                                  backgroundImage: `linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.7)), url(${recipe.image})`,
+                                }}
+                              />
+                            </div>
+                            <button
+                              onClick={() => handleRecipeButtonClick(recipe.id)}
+                              className={`recipeButton ${
+                                selectedRecipes.includes(recipe.id)
+                                  ? "selectedRecipe"
+                                  : ""
+                              }`}
+                            >
+                              {recipe.name || "Recipe Title"}
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <button
-                onClick={() => handleRecipeButtonClick(recipe.id)}
-                className={`recipeButton ${
-                  selectedRecipes.includes(recipe.id)
-                    ? "selectedRecipe"
-                    : ""
-                }`}
-              >
-                {recipe.name || "Recipe Title"}
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
             </div>
 
             <div className="saveButtonContainer">
