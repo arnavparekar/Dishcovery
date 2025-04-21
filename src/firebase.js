@@ -45,3 +45,14 @@ export const getUserMealPlans = async (userId) => {
     return [];
   }
 };
+export const getAllRecipes = async () => {
+  try {
+    const recipesCollection = collection(firestore, "recipes");
+    const querySnapshot = await getDocs(recipesCollection);
+    const recipes = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    return recipes;
+  } catch (error) {
+    console.error("Error fetching recipes:", error);
+    return [];
+  }
+};
