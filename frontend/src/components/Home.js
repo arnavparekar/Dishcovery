@@ -33,7 +33,7 @@ const Home = ({ isLoggedIn }) => {
 
       {/* Features Section */}
       <section className="features-section">
-        <div className="container">
+        <div className="container-1">
           <h2 className="section-title">Discover Our Features</h2>
           
           <div className="features-grid">
@@ -74,7 +74,7 @@ const Home = ({ isLoggedIn }) => {
 
       {/* Create Recipe Section */}
       <section className="recipe-generator-section">
-        <div className="container">
+        <div className="container-1">
           <div className="recipe-generator-content">
             <div className="recipe-generator-text">
               <h2>Create New Recipes Using Your Leftovers</h2>
@@ -95,7 +95,7 @@ const Home = ({ isLoggedIn }) => {
 
       {/* CTA Section */}
       <section className="cta-section">
-        <div className="container">
+        <div className="container-1">
           <h2>Ready to Start Cooking?</h2>
           <p>Join our community of food lovers and discover amazing recipes that will transform your cooking experience.</p>
           <div className="cta-buttons">

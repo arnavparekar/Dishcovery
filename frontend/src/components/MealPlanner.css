@@ -1,0 +1,553 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&display=swap');
+
+
+.container{
+  width: 120%;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hero Section */
+.meal-heroSection {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url("../assets/bg2.avif");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 135px 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.meal-heroContainer {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.meal-heroInner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.meal-heroTextContainer {
+  width: 50%;
+  max-width: 650px;
+  backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.meal-heroTitle {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.meal-highlight {
+  display: inline-block;
+  font-family: 'Dancing Script', cursive;
+  font-size: 3.2rem;
+  color: #fde047;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  transform: rotate(-2deg);
+  margin-left: 8px;
+}
+
+.meal-heroSubtitle {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #f1f5f9;
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+
+.meal-heroButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 32px;
+  background-color: #fde047;
+  color: #1e293b;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.meal-heroButton:hover {
+  background-color: #facc15;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.meal-buttonIcon {
+  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.meal-heroButton:hover .buttonIcon {
+  transform: translateX(4px);
+}
+
+/* Planner Section */
+.plannerSection {
+  padding: 15px 0;
+  background: linear-gradient(-45deg, #82a0bf, #83c3b3, #bf9a89, #8292b3);
+  background-size: 400% 400%;
+  animation: gradientBG 6s ease infinite;
+  min-height: 100vh;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.plannerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.plannerTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.plannerTitle:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -15px;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: #16a34a;
+  border-radius: 3px;
+}
+
+.plannerLayout {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 28%;
+  height: 750px;
+}
+
+.rightColumn {
+  width: 68%;
+}
+
+.plannerCard {
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plannerCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.cardContent {
+  padding: 15px;
+}
+
+.cardTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.cardTitle:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 40px;
+  height: 2px;
+  background-color: #16a34a;
+  border-radius: 2px;
+}
+
+/* Meal Buttons */
+.mealButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mealButton {
+  padding: 12px 16px;
+  font-size: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  color: #4b5563;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mealButton:hover {
+  background-color: #ecfdf5;
+  border-color: #10b981;
+}
+
+.mealButton.selectedMeal {
+  background-color: #16a34a;
+  border-color: #16a34a;
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(22, 163, 74, 0.2);
+}
+
+.mealButton.hoveredMeal {
+  background-color: #10b981;
+  border-color: #10b981;
+  color: #ffffff;
+}
+
+/* Recipe Selection */
+.recipeSelection {
+  height: 600px;
+  overflow-y: auto;
+  padding-right: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #16a34a #e5e7eb;
+}
+
+.recipeSelection::-webkit-scrollbar {
+  width: 6px;
+}
+
+.recipeSelection::-webkit-scrollbar-track {
+  background: #e5e7eb;
+  border-radius: 10px;
+}
+
+.recipeSelection::-webkit-scrollbar-thumb {
+  background: #16a34a;
+  border-radius: 10px;
+}
+
+.recipeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+/* Recipe Card Styles */
+.recipeCard {
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 4/5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s ease;
+}
+
+.recipeCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.imageContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.recipeImage {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease;
+  background-size: cover;
+  background-position: center;
+}
+
+.recipeCard:hover .recipeImage {
+  transform: scale(1.1);
+}
+
+.recipeButton {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  padding: 24px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  border: none;
+  text-align: left;
+  color: #ffffff;
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.recipeButton.selectedRecipe {
+  background: linear-gradient(transparent, rgba(81, 191, 121, 0.8));
+  border: 2px solid #16a34a;
+}
+
+.recipeButton.selectedRecipe:after {
+  content: "✓";
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #16a34a;
+  border-radius: 50%;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  color: white;
+}
+
+/* DatePicker Customization */
+.datePickerWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.datePicker {
+  font-family: 'Poppins', sans-serif;
+}
+
+.react-datepicker {
+  font-family: 'Poppins', sans-serif !important;
+  border-radius: 16px !important;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1) !important;
+  border: none !important;
+}
+
+.react-datepicker__header {
+  background-color: #16a34a !important;
+  border-bottom: none !important;
+  padding: 16px 0 !important;
+}
+
+.react-datepicker__current-month {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+}
+
+.react-datepicker__day-name {
+  color: #ffffff !important;
+  font-weight: 500 !important;
+  margin: 0.4em !important;
+}
+
+.react-datepicker__day {
+  margin: 0.4em !important;
+  border-radius: 50% !important;
+  transition: all 0.2s ease !important;
+}
+
+.react-datepicker__day:hover {
+  background-color: #ecfdf5 !important;
+  color: #16a34a !important;
+}
+
+.react-datepicker__day--selected {
+  background-color: #16a34a !important;
+  color: #ffffff !important;
+}
+
+.react-datepicker__day--keyboard-selected {
+  background-color: #10b981 !important;
+}
+
+/* Save Button */
+.saveButtonContainer {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 2%;
+}
+
+.saveButton {
+  padding: 10px 20px;
+  background-color: #16a34a;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.2);
+}
+
+.saveButton:hover {
+  background-color: #15803d;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(22, 163, 74, 0.3);
+}
+
+/* Footer */
+.footer {
+  background-color: #1e293b;
+  color: #cbd5e1;
+  padding: 32px 0;
+  text-align: center;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1024px) {
+  .meal-heroTextContainer {
+    width: 60%;
+  }
+  
+  .meal-heroTitle {
+    font-size: 3rem;
+  }
+  
+  .meal-highlight {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .meal-heroSection {
+    padding: 80px 0;
+  }
+  
+  .meal-heroInner {
+    justify-content: center;
+  }
+  
+  .meal-heroTextContainer {
+    width: 90%;
+    max-width: 600px;
+    padding: 30px;
+  }
+  
+  .meal-heroTitle {
+    font-size: 2.5rem;
+  }
+  
+  .meal-highlight {
+    font-size: 2.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .meal-heroSection {
+    padding: 60px 0;
+  }
+  
+  .meal-heroTextContainer {
+    padding: 24px;
+  }
+  
+  .meal-heroTitle {
+    font-size: 2rem;
+  }
+  
+  .meal-highlight {
+    font-size: 2rem;
+  }
+}
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply animation to specific elements */
+.meal-heroTextContainer {
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+/* Stagger animation timing for different elements */
+.meal-heroTextContainer {
+  animation-delay: 0.2s;
+}
+
+
+
+
+/* Individual recipe cards staggered animation */
+.recipeGrid .recipeCard:nth-child(1n) {
+  animation-delay: 0.8s;
+}
+.recipeGrid .recipeCard:nth-child(2n) {
+  animation-delay: 0.9s;
+}
+.recipeGrid .recipeCard:nth-child(3n) {
+  animation-delay: 1.0s;
+}
+.recipeGrid .recipeCard:nth-child(4n) {
+  animation-delay: 1.1s;
+}
+.recipeGrid .recipeCard:nth-child(5n) {
+  animation-delay: 1.2s;
+}
+
+/* Save button animation */
+.saveButtonContainer {
+  opacity: 0;
+  animation: fadeUp 0.8s ease 1.3s forwards;
+}
+
+/* Main section fade-in */
+.meal-heroSection {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

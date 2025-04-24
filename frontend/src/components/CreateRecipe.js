@@ -186,7 +186,7 @@ const CreateRecipe = () => {
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
     }}>
-      <div className="container">
+      <div className="container-4">
         
         {/* Header */}
         <div className="headernew">

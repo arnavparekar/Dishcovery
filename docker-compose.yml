@@ -1,16 +1,16 @@
-version: '3.8'
-
 services:
   backend:
-    build: ./backend
+    build:
+      context: ./backend
     ports:
-      - "5000:5000"
-    environment:
-      - FLASK_ENV=production
+      - "5050:5000"
+    env_file:
+      - ./backend/.env
 
   frontend:
-    build: ./src
+    build:
+      context: ./frontend
     ports:
-      - "3000:80"
-    depends_on:
-      - backend
+      - "3000:3000"
+    env_file:
+      - ./frontend/.env
