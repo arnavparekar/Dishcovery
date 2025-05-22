@@ -25,7 +25,7 @@ Dishcovery was designed and developed as a response to the evolving necessity. I
 
 Dishcovery is not just a cookbook; it is an intelligent cooking companion that interacts with users through dynamic interfaces and AI-powered suggestions. ReactJS powers a seamless frontend, Python Flask handles backend logic and APIs, Firebase provides secure real-time authentication and database access, and Docker ensures consistent environment deployments. Google’s Generative AI further enables personalized recipe generation based on user preferences, pantry inventory, and dietary needs.
 
-Dishcovery simplifies the user’s culinary journey—from recipe discovery and planning to inventory management—through an integrated platform that’s intelligent, responsive, and scalable.
+Dishcovery simplifies the user’s culinary journey from recipe discovery and planning to inventory management through an integrated platform that’s intelligent, responsive, and scalable.
 
 ---
 
@@ -159,7 +159,7 @@ docker-compose up --build
 Meet the creators behind Dishcovery – Arnav, Ritesh, Ninad and Laksh. 
 Dishcovery is the result of a passionate effort by a team of developers dedicated to transforming how users interact with food digitally. With the rise of smart applications and AI-driven personalization, we envisioned a platform that moves beyond static recipes to become a dynamic culinary assistant.
 Our team believes in building software that blends intelligence with usability. By integrating modern technologies like Google's Generative AI, Docker, Firebase, and a scalable React + Flask architecture, we set out to create a platform that could grow with its users. Whether you're a home cook experimenting with what's in your pantry or someone planning meals for the week, Dishcovery is tailored to enhance your journey.
-This project is not just an academic submission—it’s a practical, real-world application of cloud computing principles, containerized deployments, and AI integrations. Built with a developer-first mindset and a user-first heart, Dishcovery is our vision of what the future of food platforms looks like: personalized, intelligent, scalable, and joyful.
+It’s a practical, real-world application of cloud computing principles, containerized deployments, and AI integrations. Built with a developer and user first mindset. Dishcovery is our vision of what the future of food platforms looks like: personalized, intelligent, scalable, and joyful.
 We are proud to present Dishcovery as a cloud-integrated smart web app that redefines convenience, creativity, and customization in the kitchen.
 
 
