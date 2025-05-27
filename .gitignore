@@ -23,3 +23,4 @@ yarn-error.log*
 .env
 /backend/venv/
 backend/.env
+backend/dishcovery-b0db1-35a22442d517.json
