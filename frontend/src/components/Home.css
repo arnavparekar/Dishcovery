@@ -21,7 +21,6 @@
   padding: 0 20px;
 }
 
-/* Buttons */
 .btn {
   display: inline-block;
   padding: 12px 24px;
@@ -74,7 +73,6 @@
   margin-left: 8px;
 }
 
-/* Section styles */
 .section-title {
   font-size: 1.875rem;
   font-weight: 700;
@@ -82,7 +80,6 @@
   text-align: center;
 }
 
-/* Hero Section */
 .hello-section {
   position: relative;
   background: linear-gradient(to right, var(--orange-500), var(--pink-500));
@@ -154,7 +151,6 @@
   z-index: 2;
 }
 
-/* Features Section */
 .features-section {
   padding: 64px 0;
   background-color: var(--white);
@@ -200,7 +196,6 @@
   color: var(--gray-600);
 }
 
-/* Recipe Generator Section */
 .recipe-generator-section {
   padding: 64px 0;
   background: linear-gradient(to right, var(--orange-100), var(--pink-100));
@@ -234,7 +229,6 @@
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
-/* Featured Recipes Section */
 .featured-recipes-section {
   padding: 64px 0;
   background-color: var(--white);
@@ -266,7 +260,6 @@
   gap: 2rem;
 }
 
-/* CTA Section */
 .cta-section {
   padding: 64px 0;
   background: linear-gradient(to right, var(--orange-500), var(--pink-500));
@@ -295,7 +288,6 @@
   gap: 1rem;
 }
 
-/* Responsive styles */
 @media (min-width: 768px) {
   .hello-text h1 {
     font-size: 3rem;

@@ -17,20 +17,14 @@ function Header({ isLoggedIn, setIsLoggedIn }) {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
-      // Add scrolled class when not at the top
       setScrolled(currentScrollY > 20);
 
-      // Show header only at the top of the page
       if (currentScrollY === 0) {
         setHideHeader(false);
       } 
-      // Hide header when scrolling down
       else if (currentScrollY > lastScrollY) {
         setHideHeader(true);
       }
-      // When scrolling up, keep header hidden until reaching the top
-      // (no need to change hideHeader since we only set it to false at the top)
-
       lastScrollY = currentScrollY;
     };
 
@@ -39,10 +33,7 @@ function Header({ isLoggedIn, setIsLoggedIn }) {
   }, []);
 
   useEffect(() => {
-    // Close menu when route changes
     setMenuOpen(false);
-    
-    // Update headerClass based on pathname
     if (location.pathname === "/") {
       setHeaderClass("home-header");
     } else if (location.pathname === "/login") {
@@ -75,8 +66,6 @@ function Header({ isLoggedIn, setIsLoggedIn }) {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
-
-  // Add body scroll lock when menu is open
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = 'hidden';

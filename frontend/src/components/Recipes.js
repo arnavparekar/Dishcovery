@@ -73,11 +73,10 @@ const Recipes = () => {
       [type]: value
     }));
 
-    // Update active filters
     setActiveFilters(prev => {
       const filteredList = prev.filter(f => f.type !== type);
       if (value) {
-        setCurrentPage(0); // Reset to first page when a new filter is added
+        setCurrentPage(0); 
         return [...filteredList, { type, value, label }];
       }
       return filteredList;
@@ -111,7 +110,7 @@ const Recipes = () => {
         const data = doc.data();
         return {
           id: doc.id,
-          title: data.name, // Map Firestore 'name' field to 'title'
+          title: data.name, 
           cookingTime: data.cookingTime || "30 mins",
           ...data
         };
@@ -120,28 +119,22 @@ const Recipes = () => {
       console.log("Fetched Recipes:", recipesData);
     });
 
-    return () => unsubscribe(); // Cleanup the listener on component unmount
+    return () => unsubscribe(); 
   }, []);
 
   const filteredRecipes = recipes.filter(recipe => {
-    // Title search (case-insensitive)
     const matchesSearch = searchQuery === "" || recipe.title?.toLowerCase().includes(searchQuery.toLowerCase());
   
-    // Cuisine filter (exact match, only if a filter is set)
     const matchesCuisine = !filters.cuisine || recipe.cuisine === filters.cuisine;
   
-    // Meal type filter (exact match, only if a filter is set)
     const matchesMealType = !filters.mealType || recipe.mealType === filters.mealType;
   
-    // Veg/Non-Veg filter
     let matchesVeg = true;
     if (filters.veg === "veg") {
       matchesVeg = recipe.veg === true;
     } else if (filters.veg === "nonveg") {
       matchesVeg = recipe.veg === false;
     }
-  
-    // Combine all filters
     return matchesSearch && matchesCuisine && matchesMealType && matchesVeg;
   });
   

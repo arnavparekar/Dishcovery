@@ -37,13 +37,12 @@ const Login = ({ setIsLoggedIn }) => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    setError(''); // Clear previous errors
+    setError(''); 
   
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
   
-      // Store user in Firestore
       await setDoc(doc(db, "users", user.uid), {
         uid: user.uid,
         name: name,
@@ -53,7 +52,7 @@ const Login = ({ setIsLoggedIn }) => {
   
       console.log("User successfully registered and added to Firestore");
       
-      navigate('/login');  // Redirect to login page
+      navigate('/login');  
       window.location.reload();
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
@@ -99,9 +98,6 @@ const Login = ({ setIsLoggedIn }) => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-              {/* <a href="#" className="forgot-password">
-                Forgot Your Password?
-              </a> */}
               {error && isSignIn && <p className="error-message">{error}</p>}
               <button type="submit" className="submit-btn">
                 SIGN IN

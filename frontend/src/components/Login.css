@@ -309,7 +309,6 @@
     border-color: #9455ed;
   }
   
-  /* Mobile toggle button container */
   .mobile-toggle {
     display: none;
     flex-direction: column;
@@ -322,7 +321,6 @@
     display: none !important;
   }
   
-  /* Media queries for responsive design */
   @media (max-width: 1024px) {
     .auth-card {
       width: 90%;

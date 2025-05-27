@@ -158,7 +158,6 @@ const Pantry = () => {
   const [user, setUser] = useState(null);
   const db = getFirestore();
   
-  //new
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -186,18 +185,6 @@ const Pantry = () => {
     }));
   };
 
-  // const addRecipe = (recipe) => {
-  //   const servingCount = recipeServings[recipe.id] || 1;
-  //   setSelectedRecipes(prev => [
-  //     ...prev,
-  //     { ...recipe, selectedServings: servingCount }
-  //   ]);
-  //   setRecipeServings(prev => ({
-  //     ...prev,
-  //     [recipe.id]: 1
-  //   }));
-  // };
-  
   const addRecipe = (recipe) => {
     const servingCount = recipeServings[recipe.id] || 1;
     setSelectedRecipes((prev) => {
@@ -234,7 +221,6 @@ const Pantry = () => {
     }));
   };
 
-  //new
   const savePantryToFirestore = async () => {
     if (!user) return;
   
@@ -288,14 +274,10 @@ const Pantry = () => {
     setShowTable(false);
   };
   const handleGenerate = async () => {
-    if (!user) return; // Ensure user is logged in
+    if (!user) return; 
   
     setShowTable(true);
-  
-    // Save to Firestore
     await savePantryToFirestore();
-  
-    // Smooth scroll after a short delay
     setTimeout(() => {
       const element = document.querySelector('.ingredients-table h3');
       if (element) {

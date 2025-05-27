@@ -9,7 +9,6 @@
   -webkit-font-smoothing: antialiased;
 }
 
-/* Hero Section */
 .meal-heroSection {
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url("../assets/bg2.avif");
   background-size: cover;
@@ -103,7 +102,6 @@
   transform: translateX(4px);
 }
 
-/* Planner Section */
 .plannerSection {
   padding: 15px 0;
   background: linear-gradient(-45deg, #82a0bf, #83c3b3, #bf9a89, #8292b3);
@@ -199,7 +197,6 @@
   border-radius: 2px;
 }
 
-/* Meal Buttons */
 .mealButtons {
   display: flex;
   flex-direction: column;
@@ -236,7 +233,6 @@
   color: #ffffff;
 }
 
-/* Recipe Selection */
 .recipeSelection {
   height: 600px;
   overflow-y: auto;
@@ -265,7 +261,6 @@
   gap: 24px;
 }
 
-/* Recipe Card Styles */
 .recipeCard {
   border-radius: 16px;
   overflow: hidden;
@@ -342,7 +337,6 @@
   color: white;
 }
 
-/* DatePicker Customization */
 .datePickerWrapper {
   display: flex;
   justify-content: center;
@@ -399,7 +393,6 @@
   background-color: #10b981 !important;
 }
 
-/* Save Button */
 .saveButtonContainer {
   display: flex;
   justify-content: center;
@@ -425,7 +418,6 @@
   box-shadow: 0 8px 16px rgba(22, 163, 74, 0.3);
 }
 
-/* Footer */
 .footer {
   background-color: #1e293b;
   color: #cbd5e1;
@@ -433,7 +425,6 @@
   text-align: center;
 }
 
-/* Media Queries for Responsiveness */
 @media (max-width: 1024px) {
   .meal-heroTextContainer {
     width: 60%;
@@ -500,21 +491,15 @@
   }
 }
 
-/* Apply animation to specific elements */
 .meal-heroTextContainer {
   opacity: 0;
   animation: fadeUp 0.8s ease forwards;
 }
 
-/* Stagger animation timing for different elements */
 .meal-heroTextContainer {
   animation-delay: 0.2s;
 }
 
-
-
-
-/* Individual recipe cards staggered animation */
 .recipeGrid .recipeCard:nth-child(1n) {
   animation-delay: 0.8s;
 }
@@ -531,13 +516,11 @@
   animation-delay: 1.2s;
 }
 
-/* Save button animation */
 .saveButtonContainer {
   opacity: 0;
   animation: fadeUp 0.8s ease 1.3s forwards;
 }
 
-/* Main section fade-in */
 .meal-heroSection {
   opacity: 0;
   animation: fadeIn 1s ease forwards;

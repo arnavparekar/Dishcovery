@@ -13,17 +13,14 @@ const firebaseConfig = {
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const firestore = getFirestore(app);
 const storage = getStorage(app);
 export { auth, firestore, storage};
 
-// Firestore References
 export const mealPlansCollection = collection(firestore, "mealPlans");
 
-// Function to Save Meal Plan to Firestore
 export const saveMealPlanToFirestore = async (userId, mealPlanData) => {
   try {
     await addDoc(collection(firestore, "mealPlans"), {
@@ -37,7 +34,6 @@ export const saveMealPlanToFirestore = async (userId, mealPlanData) => {
   }
 };
 
-// Function to Fetch User's Meal Plans
 export const getUserMealPlans = async (userId) => {
   try {
     const q = query(mealPlansCollection, where("userId", "==", userId));

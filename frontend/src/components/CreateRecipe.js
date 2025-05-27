@@ -354,14 +354,12 @@ const CreateRecipe = () => {
             </div>
           </div>
         ) : (
-          // Generated Recipe Display
           <div className="generated-recipe">
             <button className="back-btn" onClick={closeRecipe}>
               <pre>←   Back to Ingredients</pre>
             </button>
             
             <div className="recipe-card1">
-              {/* Recipe Header with Decorative Element */}
               <div className="recipe-header">
                 <div className="recipe-decoration"></div>
                 <h2 className="recipe-title">{generatedRecipe.title}</h2>
