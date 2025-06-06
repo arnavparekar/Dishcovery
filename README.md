@@ -127,7 +127,7 @@ docker-compose up --build
 
 ## 🌟 Additional Features
 1. **Responsive UI:**
-   - Mobile-friendly, intuitive interface for recipe browsing, planning, and management.
+   - Mobile-friendly, intuitive interface for recipe browsing, recipe planning, and culinary management.
 2. **Meal Planning:**
    - Allows users to drag and drop meals into calendar slots and save their weekly meal plans to Firestore.
 2. **Review and Sharing:**
@@ -169,7 +169,7 @@ We are proud to present Dishcovery as a cloud-integrated smart web app that rede
 - Ninad Mahajan - [Ninad Mahajan](https://www.linkedin.com/in/ninad-mahajan-014a0b28b/)
 - Laksh Jain - [Laksh Jain](https://www.linkedin.com/in/laksh-jain-6b308323b/)
 
-## Happy coding 💯
+## Happy coding ❤️
 
 Made with love ❤️
 ---
