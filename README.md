@@ -1,5 +1,5 @@
 <center>  
-  <img src="https://readme-typing-svg.herokuapp.com?font=Times+new+Roman&size=35&letterSpacing=2px&duration=3000&pause=1000&color=F72C75&width=435&lines=Welcome+to+Dishcovery!"/>  
+  <img src="https://readme-typing-svg.herokuapp.com?font=Times+new+Roman&size=30&letterSpacing=1px&duration=3000&pause=1000&color=F72C75&width=435&lines=Welcome+to+Dishcovery!"/>  
 </center>
 
 ## Table of Contents
